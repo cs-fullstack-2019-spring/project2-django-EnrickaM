@@ -1,0 +1,91 @@
+{#{% extends 'wikiApp/base.html'%}#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wikiApp/homepage.css' %}">
+</head>
+<body>
+<h1>Welcome to Coding Languages</h1>
+
+
+{#****************************** If the user is logged in. Everything below here will show ******************************#}
+{% if user.is_authenticated %}
+    Welcome Back{{ user.username }}
+    <p><a href="{% url 'newentry' %}">New Entry</a> </p>
+{#    <p><a href="{% url 'allpost' %}">All Entries</a> </p>#}
+    {% if allposts %}
+        <ul>
+            {% for x in allposts %}
+                <li><a href="{% url 'details' x.id %}">{{ x.title }}</a><br>{{ x.text }}<br>{{ x.datecreated }}<br>{{ x.lastupdate }} <a href="{% url 'newentry' %}">Edit </a></li>
+            {% endfor %}
+        </ul>
+    {
+<a href="{% url 'logout' %}">LOGOUT</a>
+    {% endif %}
+
+    {#****************************** If the user is LOGGED OUT!!! Everything below here will show ******************************#}
+{% else %}
+    <p><a href="{% url 'create' %}">Create new user</a> </p>
+    <p> <a href="{% url 'login' %}">Login</a> </p>
+
+
+{% endif %}
+
+
+{#****************************** THIS WILL ALWAYS SHOW ******************************#}
+
+<div id="container">
+<a href="{% url 'index' %}">HomePage</a>
+{#<a href="{% url 'newentry' %}">New Entry</a>#}
+<a href="{% url 'allpost' %}">All Post</a>
+</div>
+{#<ul>#}
+{#{% if allpost %}#}
+{#{% for x in allpost %}#}
+{#   <li> {{ x.title }}<br><a href="{% url 'allpost' %}">Click here for more information</a>#}
+{#   </li>#}
+{#{% endfor %}#}
+{#</ul>#}
+{#<ul>#}
+{#    {%  for x in allposts %}#}
+{#        <li><a href="{% url 'details' x.id %}">{{ x.title }}</a><br>{{ x.text }}<br>{{ x.datecreated }}<br>{{ x.lastupdate }} <a href="{% url 'newentry' %}">Edit </a></li>#}
+{#    {% endfor %}#}
+{##}
+{##}
+{#</ul>#}
+<section>
+{#    <a href="{% url 'login' %}">LOGIN HERE</a>#}
+</section>
+<article>
+    <p>There are a ton of languages you can learn from when you are trying to become a coder.As you may not know coding
+is about to take over most jobs. This new technology is become more and more advance. Plus its a pretty cool thing to learn
+        Now it challenging but in life whats not? If its reall something you want to accomplish and do more for a community this would be goof for you.</p>
+<p> <a href="{% url 'allpost' %}">JavaScript
+</a>
+Not to go in any order or say which one is the best because I am no expert.But the first one We are going to start with
+While Javascript it was originally developed by Netscape as a means to add dynamic and interactive elements to websites.
+JavaScript is influenced by Java, the syntax is more similar to C and is based on ECMAScript, a scripting language developed by Sun Microsystems.
+    The next coding langue is Python</p>
+</article>
+
+{#{% if user.is_authenticated %}#}
+{#<p><a href="{% url 'newentry' %}">New Entry</a> </p>#}
+{#<p><a href="{% url 'allentries' %}">All Entries</a> </p>#}
+{#{% if allentries %}#}
+{#<ul>{% for x in allentries %}#}
+{#<li>{{ x.subject }}</li>#}
+{#    {% endfor %}#}
+{#{% else %}#}
+{#<h2>Add entries</h2>#}
+{#{% endif %}#}
+{#</ul>#}
+{#{% else %}#}
+{#<p><a href="{% url 'create' %}">Create new user</a> </p>#}
+{#<p> <a href="{% url 'login' %}">Login</a> </p>#}
+{#{% endif %}#}
+</body>
+</html>

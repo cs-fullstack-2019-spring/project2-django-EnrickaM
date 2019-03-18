@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> All Post</h1>
+<div id="container">
+</html>
+    <a href="{% url 'index' %}">HomePage</a>
+    <a href="{% url 'newentry' %}">New Entry</a>
+
+    <a href="{% url 'allpost' %}">All Your Post</a>
+</div>
+<ul>
+    {%  for x in allposts %}
+    <li><a href="{% url 'details' x.id %}">{{ x.title }}</a><br>{{ x.text }}<br>{{ x.datecreated }}<br>{{ x.lastupdate }} <a href="{% url 'newentry' %}"></a></li>
+    {% endfor %}
+
+
+</ul>
+<a href="{% url 'logout' %}">LOGOUT</a>
+</body>

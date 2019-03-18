@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> New/updated Coding Entries</h1>
+<div id="container">
+<a href="{% url 'index' %}">HomePage</a>
+<a href="{% url 'newentry' %}">New Entry</a>
+<a href="{% url 'allpost' %}">All Your Posts</a>
+</div>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<button type="submit" value="Add">Add</button>
+</form>
+{#{% if user.is_authenticated %}#}
+{#    <p><a href="{% url 'newentry' %}">New Entry</a> </p>#}
+{#    <p><a href="{% url 'allentries' %}">All Entries</a> </p>#}
+{#    {% if allentries %}#}
+{#        <ul>{% for x in allentries %}#}
+{#        <li>{{ x.subject }}</li>#}
+{#    {% endfor %}#}
+{#    {% else %}#}
+{#        <h2>Add entries</h2>#}
+{#    {% endif %}#}
+{#</ul>#}
+{#{% else %}#}
+{#    <p><a href="{% url 'create' %}">Create new user</a> </p>#}
+{#    <p> <a href="{% url 'login' %}">Login</a> </p>#}
+{#{% endif %}#}
+
+
+<ul>
+    {% for x in allposts %}
+    <li>{{x.title}}<br>{{x.text}}<br>{{x.datecreated}}<br>{{x.lastupdate}}</li>
+{% endfor %}
+</ul>

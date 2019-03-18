@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <a href="{% url 'index' %}">HomePage</a>
+
+    <a href="{% url 'allpost' %}">All Your Post</a>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>add</button>
+<ul>
+    {% for x in allposts %}
+    <li>{{ x.description }}<br>{{ x.photo }}</li>
+    {% endfor %}
+</ul>
+</form>
+</body>
+</html>
